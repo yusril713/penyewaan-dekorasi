@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('venobox/venobox.css') }}" rel="stylesheet">
-    <title>Hotel Bunga Pertama | @yield('title')</title>
+    <title>Classica Sound | @yield('title')</title>
     <style>
         .float {
             position: fixed;
@@ -176,16 +176,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
-                            <a href="about.html" class="nav-item nav-link">Produk</a>
-                            <a href="service.html" class="nav-item nav-link">Transaksi</a>
-                            <a href="room.html" class="nav-item nav-link">Profil</a>
-                            <a href="room.html" class="nav-item nav-link"><i class="fa fa-shopping-cart"></i><span class="badge badge-danger">
+                            <a href="{{ route('product.index') }}" class="nav-item nav-link">Produk</a>
+                            <a href="#" class="nav-item nav-link">Transaksi</a>
+                            <a href="{{ route('profile.index') }}" class="nav-item nav-link">Profil</a>
+                            <a href="{{ route('cart.index') }}" class="nav-item nav-link"><i class="fa fa-shopping-cart"></i><span class="badge badge-danger">
                                 @if (Session::get('cart'))
                                     {{ sizeof(Session::get('cart')) }}
                                 @endif
                             </span></a>
                         </div>
-                        <a href="{{ route('login') }}" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+                        @if (Auth::check())
+                            <a href="#">{{ Auth::user()->email }}</a>
+                        @else
+                            <a href="{{ route('login') }}" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+                        @endif
                     </div>
                 </nav>
             </div>
@@ -197,10 +201,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         @yield('content')
         <div class="container-fluid page-header p-0 wow fadeIn" data-wow-delay="0.1s">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3974.283083149846!2d119.53342501476378!3d-5.057792796328929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbef96737785249%3A0x9f038d9b48a10128!2sHotel%20Bunga%20Permata!5e0!3m2!1sen!2ssg!4v1653064725617!5m2!1sen!2ssg"
-                width="100%" height="300px" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15817.9777167871!2d109.6028752270832!3d-7.629854911979398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7ab50172751505%3A0x5027a76e35531b0!2sKarangjambu%2C%20Sruweng%2C%20Kebumen%20Regency%2C%20Central%20Java%2C%20Indonesia!5e0!3m2!1sen!2ssg!4v1660388177927!5m2!1sen!2ssg" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         {{-- <!-- Newsletter Start -->
         <div class="container newsletter mt-5 wow fadeIn" data-wow-delay="0.1s">

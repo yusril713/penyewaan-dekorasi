@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+    public function index()
+    {
+        return view('customer.cart.index');
+    }
+
     public function addToCart(Request $request, $id)
     {
         $product = Product::with('getImage')->findOrFail($id);
@@ -29,7 +34,7 @@ class CartController extends Controller
                 "name" => $product->name,
                 "quantity" => $request->qty,
                 "price" => $product->price,
-                "booking_date" => $request->returnDate,
+                "booking_date" => $request->bookingDate,
                 "return_date" => $request->returnDate,
                 "duration" => $diff,
                 "image" => $product->getImage->image
@@ -39,5 +44,24 @@ class CartController extends Controller
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
         // dd(Session::get('cart'));
+    }
+
+    public function removeFromCart(Request $request)
+    {
+        if($request->id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$request->id])) {
+                unset($cart[$request->id]);
+                session()->put('cart', $cart);
+            }
+            session()->flash('success', 'Product removed successfully');
+        }
+    }
+
+    public function flushSession(Request $request)
+    {
+        $request->session()->flush();
+
+        return redirect('/');
     }
 }

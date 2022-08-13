@@ -6,7 +6,9 @@ use App\Http\Controllers\FurnishController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,16 +24,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('redirect', [HomeController::class, 'redirect']);
+
 Route::get('sign-up', [RegisterController::class, 'index'])->name('signup');
 Route::post('sign-up', [RegisterController::class, 'store'])->name('signup');
 
+Route::get('product', [ProductController::class, 'index'])->name('product.index');
 Route::get('product/{id}/detail', [ProductController::class, 'detail'])->name('product.detail');
 Route::post('add-to-cart/{id}', [CartController::class, 'addToCart'])->name('addtocart');
+Route::get('cart', [CartController::class, 'index'])->name('cart.index');
+Route::delete('remove-from-cart', [CartController::class, 'removeFromCart'])->name('remove.from.cart');
+
+Route::get('flush-session', function(Request $request) {
+    $request->session()->flush();
+
+    return redirect('/');
+});
 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'role:admin|owner'
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -49,4 +63,15 @@ Route::middleware([
     Route::get('furnish/manage/{id}/detail/create', [DecorController::class, 'createImage'])->name('furnish.manage.detail.create');
     Route::post('furnish/manage/{id}/detail', [DecorController::class, 'storeImage'])->name('furnish.manage.detail.store');
     Route::delete('furnish/manage/{id}/detail/{imageId}', [DecorController::class, 'destroyImage'])->name('furnish.manage.detail.destroy');
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'role:owner|customer|admin'
+])->group(function() {
+    Route::get('profile', [ProfilController::class, 'index'])->name('profile.index');
+    Route::post('profile/update-password', [ProfilController::class, 'updatePassword'])->name('profile.updatePassword');
+    Route::post('profile/{id}', [ProfilController::class, 'updateProfile'])->name('profile.updateProfile');
 });
