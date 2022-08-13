@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Product;
+use App\Models\Transaction;
+use App\Models\TransactionDetails;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
@@ -26,7 +30,7 @@ class CartController extends Controller
         if(isset($cart[$id])) {
             $cart[$id]['quantity'] = $request->qty;
             $cart[$id]['image'] = $product->getImage->image;
-            $cart[$id]['duration'] = $diff;
+            $cart[$id]['duration'] = $diff > 0 ? $diff : 1;
             $cart[$id]['booking_date'] = $request->bookingDate;
             $cart[$id]['return_date'] = $request->returnDate;
         } else {
@@ -36,7 +40,7 @@ class CartController extends Controller
                 "price" => $product->price,
                 "booking_date" => $request->bookingDate,
                 "return_date" => $request->returnDate,
-                "duration" => $diff,
+                "duration" => $diff > 0 ? $diff : 1,
                 "image" => $product->getImage->image
              ];
         }
@@ -58,10 +62,42 @@ class CartController extends Controller
         }
     }
 
-    public function flushSession(Request $request)
+    public function flushSession()
     {
-        $request->session()->flush();
+        session()->forget('cart');
+    }
 
-        return redirect('/');
+    public function checkout()
+    {
+        $customer = Customer::where('user_id', '=', Auth::user()->id)->first();
+        if (session()->get('cart')) {
+            $transaction = new Transaction();
+            $transaction->setData([
+                'customer_id' => $customer->id,
+                'status' => Transaction::UNCONFIRMED,
+                'payment_status' => Transaction::UNPAID
+            ]);
+            $transaction->save();
+
+            foreach(session()->get('cart') as $id => $detail) {
+                $details = new TransactionDetails();
+                $details->setData([
+                    'transaction_id' => $transaction->id,
+                    'product_id' => $id,
+                    'booking_date' => $detail['booking_date'],
+                    'return_date' => $detail['return_date'],
+                    'duration' => $detail['duration'],
+                    'quantity' => $detail['quantity'],
+                    'price' => $detail['price']
+                ]);
+                $details->save();
+            }
+            $this->flushSession();
+
+            return 'ok';
+            // return redirect()->route('home')->with('status', 'Transaksi ')
+        }
+
+        return redirect()->back();
     }
 }

@@ -74,4 +74,6 @@ Route::middleware([
     Route::get('profile', [ProfilController::class, 'index'])->name('profile.index');
     Route::post('profile/update-password', [ProfilController::class, 'updatePassword'])->name('profile.updatePassword');
     Route::post('profile/{id}', [ProfilController::class, 'updateProfile'])->name('profile.updateProfile');
+
+    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
 });

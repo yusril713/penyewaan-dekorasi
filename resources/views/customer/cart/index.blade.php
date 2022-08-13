@@ -58,7 +58,7 @@
             </table>
         </div>
         <div class="d-flex justify-content-end mb-5">
-            <a class="btn btn-primary">BOOK NOW</a>
+            <a class="btn btn-primary" href="{{ route('checkout') }}">CHECKOUT</a>
         </div>
     </div>
 </div>
