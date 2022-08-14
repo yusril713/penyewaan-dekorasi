@@ -10,6 +10,11 @@ class TransactionDetails extends Model
     use HasFactory;
     protected $table = 'transaction_details';
 
+    public function getProduct()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
     public function setData($data)
     {
         $this->setTransactionId($data['transaction_id']);

@@ -147,19 +147,30 @@
                 </a>
             </li>
             <li class="menu-item">
-                <a href="{{ url('/dashboard') }}" class="menu-link">
+                <a href="{{ route('booking.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div data-i18n="Analytics">Pesanan
+                        @if (Transaction::getCountTransactionUnconfirmed() > 0)
+                            <span class="badge bg-danger"></span>
+                        @endif
+                    </div>
+
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('decor.manage.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Tenda Dekorasi</div>
                 </a>
             </li>
             <li class="menu-item">
-                <a href="{{ url('/dashboard') }}" class="menu-link">
+                <a href="{{ route('furnish.manage.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Perlengkapan</div>
                 </a>
             </li>
             <li class="menu-item">
-                <a href="{{ url('/dashboard') }}" class="menu-link">
+                <a href="#" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-user-check"></i>
                     <div data-i18n="Analytics">Customer</div>
                 </a>
@@ -261,14 +272,15 @@
               <div class="pt-3 pb-3">
                 @if (session('failed'))
                   <div class="alert alert-danger alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
                     {{ session('failed') }}
                   </div>
                 @endif
                 @if (session('success'))
                 <div class="alert alert-success alert-dismissible" role="alert">
-                  <button type="button" class="close" data-dismiss="alert">&times;</button>
                   {{ session('success') }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
               </div>

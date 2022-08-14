@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DecorController;
 use App\Http\Controllers\FurnishController;
 use App\Http\Controllers\HomeController;
@@ -63,6 +65,11 @@ Route::middleware([
     Route::get('furnish/manage/{id}/detail/create', [DecorController::class, 'createImage'])->name('furnish.manage.detail.create');
     Route::post('furnish/manage/{id}/detail', [DecorController::class, 'storeImage'])->name('furnish.manage.detail.store');
     Route::delete('furnish/manage/{id}/detail/{imageId}', [DecorController::class, 'destroyImage'])->name('furnish.manage.detail.destroy');
+
+    Route::get('booking', [BookingController::class, 'index'])->name('booking.index');
+    Route::get('booking/{id}', [BookingController::class, 'show'])->name('booking.show');
+    Route::put('booking/{id}/confirm', [BookingController::class, 'confirm'])->name('booking.confirm');
+    Route::put('booking/{id}/cancel', [BookingController::class, 'cancel'])->name('booking.cancel');
 });
 
 Route::middleware([
@@ -75,5 +82,7 @@ Route::middleware([
     Route::post('profile/update-password', [ProfilController::class, 'updatePassword'])->name('profile.updatePassword');
     Route::post('profile/{id}', [ProfilController::class, 'updateProfile'])->name('profile.updateProfile');
 
-    Route::get('checkout', [CartController::class, 'checkout'])->name('checkout');
+    Route::get('process-to-checkout', [CartController::class, 'processToCheckout'])->name('processToCheckout');
+    Route::get('checkout/{id}', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::put('checkout/{id}/receipt-of-transfer', [CheckoutController::class, 'uploadReceiptOfTransfer'])->name('checkout.receiptOfTransfer');
 });

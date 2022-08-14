@@ -67,7 +67,7 @@ class CartController extends Controller
         session()->forget('cart');
     }
 
-    public function checkout()
+    public function processToCheckout()
     {
         $customer = Customer::where('user_id', '=', Auth::user()->id)->first();
         if (session()->get('cart')) {
@@ -94,8 +94,7 @@ class CartController extends Controller
             }
             $this->flushSession();
 
-            return 'ok';
-            // return redirect()->route('home')->with('status', 'Transaksi ')
+            return redirect()->route('checkout.index', [$transaction->id]);
         }
 
         return redirect()->back();
