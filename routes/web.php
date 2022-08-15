@@ -61,7 +61,7 @@ Route::middleware([
     Route::resource('furnish/manage', FurnishController::class, ['as' => 'furnish']);
     Route::resource('employee/manage', EmployeeController::class, ['as' => 'employee']);
 
-    Route::get('employe/reset-password', [EmployeeController::class, 'resetPassword'])->name('employee.resetPassword');
+    Route::get('employe/{userId}/reset-password', [CustomerController::class, 'resetPassword'])->name('employee.resetPassword');
 
     Route::get('decor/manage/{id}/detail', [DecorController::class, 'indexImage'])->name('decor.manage.detail.index');
     Route::get('decor/manage/{id}/detail/create', [DecorController::class, 'createImage'])->name('decor.manage.detail.create');
