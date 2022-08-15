@@ -5,12 +5,13 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DecorController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FurnishController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,9 @@ Route::middleware([
 
     Route::resource('decor/manage', DecorController::class, ['as' => 'decor']);
     Route::resource('furnish/manage', FurnishController::class, ['as' => 'furnish']);
+    Route::resource('employee/manage', EmployeeController::class, ['as' => 'employee']);
+
+    Route::get('employe/reset-password', [EmployeeController::class, 'resetPassword'])->name('employee.resetPassword');
 
     Route::get('decor/manage/{id}/detail', [DecorController::class, 'indexImage'])->name('decor.manage.detail.index');
     Route::get('decor/manage/{id}/detail/create', [DecorController::class, 'createImage'])->name('decor.manage.detail.create');
@@ -80,6 +84,8 @@ Route::middleware([
 
     Route::get('customer', [CustomerController::class, 'index'])->name('customer.index');
     Route::post('customer/{userId}/reset-password/', [CustomerController::class, 'resetPassword'])->name('customer.resetPassword');
+    Route::get('/transaction/report', [ReportController::class, 'index'])->name('transaction.report.index');
+    Route::get('/transaction/report/print', [ReportController::class, 'print'])->name('transaction.report.print');
 });
 
 Route::middleware([

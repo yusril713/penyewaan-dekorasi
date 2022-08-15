@@ -176,7 +176,7 @@
                 </a>
             </li>
             <li class="menu-item">
-                <a href="{{ url('/dashboard') }}" class="menu-link">
+                <a href="{{ route('employee.manage.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-user"></i>
                     <div data-i18n="Analytics">Pengguna</div>
                 </a>
@@ -194,7 +194,7 @@
                 </a>
             </li>
             <li class="menu-item">
-                <a href="{{ url('/dashboard') }}" class="menu-link">
+                <a href="{{ route('transaction.report.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-report bx-rotate-270"></i>
                     <div data-i18n="Analytics">Laporan</div>
                 </a>
