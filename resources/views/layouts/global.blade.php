@@ -149,7 +149,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="col-lg-7 px-5 text-start">
                         <div class="h-100 d-inline-flex align-items-center py-2 me-4">
                             <i class="fa fa-envelope text-primary me-2"></i>
-                            <p class="mb-0">info@example.com</p>
+                            <p class="mb-0">teguhsimon@gmail.com</p>
                         </div>
                         <div class="h-100 d-inline-flex align-items-center py-2">
                             <i class="fa fa-phone-alt text-primary me-2"></i>
@@ -158,10 +158,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                     <div class="col-lg-5 px-5 text-end">
                         <div class="d-inline-flex align-items-center py-2">
-                            <a class="me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="me-3" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a class="me-3" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="me-3" href="https://www.facebook.com/jrsboement" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a class="me-3" href="https://www.youtube.com/channel/UCeomdahev8UPEyUh43_8fSA" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a class="me-3" href="https://www.instagram.com/simon_kecil/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
                             <a class="" href=""><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
@@ -236,14 +235,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                     <div class="col-md-6 col-lg-4">
                         <h6 class="section-title text-start text-primary text-uppercase mb-4">Contact Us</h6>
-                        <p class="mb-2"><i class="fa fa-map me-3"></i>Jl. Poros, Marumpa, Kec.
-                            Marusu, Kabupaten Maros, Sulawesi Selatan 90552, Indonesia
+                        <p class="mb-2"><i class="fa fa-map me-3"></i>Karangjambu, Kecamatan Sruweng, Kabupaten Kebumen, Jawa Tengah 54362
                         </p>
-                        <p class="mb-2"><i class="fa fa-phone me-3"></i>082197325590</p>
-                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>pt.indahpermatasejati@gmail.com</p>
+                        <p class="mb-2"><i class="fa fa-phone me-3"></i>0811263557</p>
+                        <p class="mb-2"><i class="fa fa-envelope me-3"></i>teguhsimon@gmail.com</p>
                         <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/hotel_bunga_permata" target="_blank"><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/HOTELBUNGAPERMATA" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/simon_kecil/?hl=en" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/channel/UCeomdahev8UPEyUh43_8fSA" target="_blank"><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/jrsboement" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         </div>
                     </div>
                 </div>
