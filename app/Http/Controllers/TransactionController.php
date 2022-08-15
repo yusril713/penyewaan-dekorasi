@@ -17,7 +17,10 @@ class TransactionController extends Controller
             'transactions' => Transaction::with('getTransactionDetails.getProduct', 'getCustomer')
                 ->where('status', '=', Transaction::CONFIRMED)
                 ->where('payment_status', '=', Transaction::PAID)
-                ->where('status_loan', '=', null)
+                ->where(function($q) {
+                    $q->where('status_loan', null)
+                      ->orWhere('status_loan', Transaction::BORROWED);
+                })
                 ->orderBy('created_at', 'desc')
                 ->get()
         ]);

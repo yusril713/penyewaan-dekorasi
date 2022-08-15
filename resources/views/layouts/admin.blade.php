@@ -151,7 +151,7 @@
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
                     <div data-i18n="Analytics">Pesanan
                         @if (Transaction::getCountTransactionUnconfirmed() > 0)
-                            <span class="badge bg-danger"></span>
+                            <span class="badge bg-danger">{{Transaction::getCountTransactionUnconfirmed()}}</span>
                         @endif
                     </div>
 
