@@ -176,7 +176,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div class="navbar-nav mr-auto py-0">
                             <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
                             <a href="{{ route('product.index') }}" class="nav-item nav-link">Produk</a>
-                            <a href="#" class="nav-item nav-link">Transaksi</a>
+                            <a href="{{ route('user.transaction') }}" class="nav-item nav-link">Transaksi</a>
                             <a href="{{ route('profile.index') }}" class="nav-item nav-link">Profil</a>
                             <a href="{{ route('cart.index') }}" class="nav-item nav-link"><i class="fa fa-shopping-cart"></i><span class="badge badge-danger">
                                 @if (Session::get('cart'))

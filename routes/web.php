@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserTransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -101,4 +102,7 @@ Route::middleware([
     Route::get('process-to-checkout', [CartController::class, 'processToCheckout'])->name('processToCheckout');
     Route::get('checkout/{id}', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::put('checkout/{id}/receipt-of-transfer', [CheckoutController::class, 'uploadReceiptOfTransfer'])->name('checkout.receiptOfTransfer');
+
+    Route::get('my-transaction', [UserTransactionController::class, 'index'])->name('user.transaction');
+    Route::get('my-transaction/{id}', [UserTransactionController::class, 'show'])->name('user.transaction.show');
 });
