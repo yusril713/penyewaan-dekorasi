@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DecorController;
 use App\Http\Controllers\FurnishController;
 use App\Http\Controllers\HomeController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +72,14 @@ Route::middleware([
     Route::get('booking/{id}', [BookingController::class, 'show'])->name('booking.show');
     Route::put('booking/{id}/confirm', [BookingController::class, 'confirm'])->name('booking.confirm');
     Route::put('booking/{id}/cancel', [BookingController::class, 'cancel'])->name('booking.cancel');
+
+    Route::get('transaction', [TransactionController::class, 'index'])->name('transaction.index');
+    Route::put('transaction/{id}/borrowed', [TransactionController::class, 'borrowed'])->name('transaction.borrowed');
+    Route::put('transaction/{id}/returned', [TransactionController::class, 'returned'])->name('transaction.returned');
+    Route::get('transaction/history', [TransactionController::class, 'history'])->name('transaction.history');
+
+    Route::get('customer', [CustomerController::class, 'index'])->name('customer.index');
+    Route::post('customer/{userId}/reset-password/', [CustomerController::class, 'resetPassword'])->name('customer.resetPassword');
 });
 
 Route::middleware([

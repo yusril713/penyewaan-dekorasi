@@ -33,7 +33,7 @@ class RegisterController extends Controller
             $user = new User();
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
-            $user->role = 'customer';
+            $user->role = 2;
             $user->save();
 
             $customer = new Customer();

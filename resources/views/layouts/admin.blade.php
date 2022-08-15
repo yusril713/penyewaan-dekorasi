@@ -170,7 +170,7 @@
                 </a>
             </li>
             <li class="menu-item">
-                <a href="#" class="menu-link">
+                <a href="{{ route('customer.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-user-check"></i>
                     <div data-i18n="Analytics">Customer</div>
                 </a>
@@ -182,9 +182,15 @@
                 </a>
             </li>
             <li class="menu-item">
-                <a href="{{ url('/dashboard') }}" class="menu-link">
+                <a href="{{ route('transaction.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-cart"></i>
                     <div data-i18n="Analytics">Transaksi</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('transaction.history') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-cart"></i>
+                    <div data-i18n="Analytics">History Transaksi</div>
                 </a>
             </li>
             <li class="menu-item">

@@ -185,8 +185,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="">Nama Lengkap</label>
-                    <textarea name="address" id="" placeholder="Masukkan nama Lengkap" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
+                    <label for="">Alamat Lengkap</label>
+                    <textarea name="address" id="" placeholder="Masukkan alamat Lengkap" class="form-control @error('address') is-invalid @enderror">{{ old('address') }}</textarea>
                     @error('address')
                         <div class="alert alert-danger">
                             {{ $message }}

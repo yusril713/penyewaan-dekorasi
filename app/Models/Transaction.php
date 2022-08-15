@@ -16,6 +16,8 @@ class Transaction extends Model
     public const FINISHED = "FINISHED";
     public const UNPAID = "UNPAID";
     public const PAID = "PAID";
+    public const BORROWED = "BORROWED";
+    public const RETURNED = "RETURNED";
 
     public function getCount()
     {
@@ -63,6 +65,11 @@ class Transaction extends Model
     public function setPaymentStatus($paymentSatus)
     {
         $this->payment_status = $paymentSatus;
+    }
+
+    public function setLoanStatus($loanStatus)
+    {
+        $this->status_loan = $loanStatus;
     }
 
     public function setReceiptOfTransfer($image)
