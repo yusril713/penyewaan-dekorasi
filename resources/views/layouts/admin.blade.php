@@ -196,7 +196,13 @@
             <li class="menu-item">
                 <a href="{{ route('transaction.report.index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx bxs-report bx-rotate-270"></i>
-                    <div data-i18n="Analytics">Laporan</div>
+                    <div data-i18n="Analytics">Laporan Transaksi</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('transaction.paymentReport.index') }}" class="menu-link">
+                    <i class="menu-icon tf-icons bx bxs-report bx-rotate-270"></i>
+                    <div data-i18n="Analytics">Laporan Pembayaran</div>
                 </a>
             </li>
           </ul>

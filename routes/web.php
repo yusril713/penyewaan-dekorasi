@@ -87,6 +87,8 @@ Route::middleware([
     Route::post('customer/{userId}/reset-password/', [CustomerController::class, 'resetPassword'])->name('customer.resetPassword');
     Route::get('/transaction/report', [ReportController::class, 'index'])->name('transaction.report.index');
     Route::get('/transaction/report/print', [ReportController::class, 'print'])->name('transaction.report.print');
+    Route::get('/transaction/report-report', [ReportController::class, 'indexPaymentReport'])->name('transaction.paymentReport.index');
+    Route::get('/transaction/{id}/payment-report/print', [ReportController::class, 'printPaymentReport'])->name('transaction.paymentReport.print');
 });
 
 Route::middleware([
@@ -104,5 +106,5 @@ Route::middleware([
     Route::put('checkout/{id}/receipt-of-transfer', [CheckoutController::class, 'uploadReceiptOfTransfer'])->name('checkout.receiptOfTransfer');
 
     Route::get('my-transaction', [UserTransactionController::class, 'index'])->name('user.transaction');
-    Route::get('my-transaction/{id}', [UserTransactionController::class, 'show'])->name('user.transaction.show');
+    Route::get('my-transaction/{id}/print', [UserTransactionController::class, 'print'])->name('user.transaction.print');
 });

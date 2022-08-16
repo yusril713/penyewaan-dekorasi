@@ -42,7 +42,13 @@
                             @endphp
                         @endforeach
                         </td>
-                        <td>Rp {{ number_format($total) }}</td>
+                        <td>Rp {{ number_format($total) }}
+                            <br>
+                            <form action="{{ route('user.transaction.print', [$transaction->id]) }}" method="get">
+                                @csrf
+                                <button type="submit" class="btn btn-primary btn-sm">Print Struk</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
