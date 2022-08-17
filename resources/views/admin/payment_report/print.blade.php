@@ -29,7 +29,7 @@
                 $total = 0;
             @endphp
             <tr>
-                <td>{{ $no++ }}.</td>
+                <td>{{ $loop->index + 1 }}.</td>
                 <td>Invoice: {{ $transaction->invoice }}
                 </td>
                 @foreach ($transaction->getTransactionDetails as $detail)
