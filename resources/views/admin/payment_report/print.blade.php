@@ -30,7 +30,7 @@
             @endphp
             <tr>
                 <td>{{ $loop->index + 1 }}.</td>
-                <td>Invoice: {{ $transaction->invoice }}
+                <td>{{ $transaction->invoice }}
                 </td>
                 @foreach ($transaction->getTransactionDetails as $detail)
                     @php
