@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Transaction;
 use App\Models\TransactionDetails;
+use Carbon\Carbon;
 use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,16 +47,14 @@ class ReportController extends Controller
         ]);
     }
 
-    public function printPaymentReport($id)
+    public function printPaymentReport()
     {
-        $transaction = Transaction::with('getCustomer', 'getTransactionDetails')->find($id);
+        $transactions = Transaction::with('getCustomer', 'getTransactionDetails')->get();
         $pdf = PDF::loadView('admin.payment_report.print', [
-            'transaction' => $transaction,
-            'name' => Employee::where('user_id', '=', Auth::user()->id)->first(),
-            'start_date' => TransactionDetails::where('transaction_id', '=', $id)->orderBy('booking_date', 'asc')->limit(1)->get(),
-            'end_date' => TransactionDetails::where('transaction_id', '=', $id)->orderBy('return_date', 'desc')->limit(1)->get(),
+            'transactions' => $transactions,
+            'name' => Employee::where('user_id', '=', Auth::user()->id)->first()
         ]);
 
-        return $pdf->download('Laporan Invoice_' . $transaction->invoice . '_' . $transaction->getCustomer->name);
+        return $pdf->download('Laporan Pembayaran ' . Carbon::now()->format('dmY'));
     }
 }

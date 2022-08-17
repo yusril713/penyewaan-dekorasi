@@ -14,48 +14,37 @@
         </center>
         <hr style="color: black">
     </header>
-    <h4>Invoice #{{ $transaction->invoice }}</h4>
-
-    <table style="width: 50%; border:none;">
-        <tr>
-            <td>Nama Customer</td>
-            <td>: {{ $transaction->getCustomer->name }}</td>
-        </tr>
-        <tr>
-            <td>Tanggal Mulai Acara</td>
-            <td>: {{ $start_date[0]->booking_date }}</td>
-        </tr>
-        <tr>
-            <td>Tanggal Selesai Acara</td>
-            <td>: {{ $end_date[0]->return_date }}</td>
-        </tr>
-    </table>
-    @php
-        $total = 0;
-    @endphp
-    @foreach ($transaction->getTransactionDetails as $detail)
-        @php
-            $total += ($detail->price * $detail->quantity * $detail->duration)
-        @endphp
-    @endforeach
     <table class="table table-bordered" style="margin-top: 20px">
         <tr>
             <th>No</th>
-            <th>Keterangan</th>
+            <th>Invoice</th>
             <th>Nominal</th>
-            <th>Status</th>
         </tr>
         <tbody>
+            @php
+                $totalTransactions = 0;
+            @endphp
+            @foreach ($transactions as $transaction)
+            @php
+                $total = 0;
+            @endphp
             <tr>
-                <td>1.</td>
-                <td>Pembayaran Invoice {{ $transaction->invoice }}</td>
-                <td>{{ number_format($total) }}</td>
-                <td>{{ $transaction->payment_status }}</td>
+                <td>{{ $no++ }}.</td>
+                <td>Invoice: {{ $transaction->invoice }}
+                </td>
+                @foreach ($transaction->getTransactionDetails as $detail)
+                    @php
+                        $total += $detail->price * $detail->quantity * $detail->duration;
+                    @endphp
+                @endforeach
+                <td>Rp {{ number_format($total) }}</td>
             </tr>
+            @php
+                $totalTransactions += $total;
+            @endphp
+            @endforeach
         </tbody>
     </table>
-
-    <p><b>Total Pembayaran: Rp {{ number_format($total) }}</b></p>
     <br>
     <div style="right: 0">
         <p style="text-align: right">Kebumen, {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p> <br><br><br>

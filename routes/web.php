@@ -88,7 +88,7 @@ Route::middleware([
     Route::get('/transaction/report', [ReportController::class, 'index'])->name('transaction.report.index');
     Route::get('/transaction/report/print', [ReportController::class, 'print'])->name('transaction.report.print');
     Route::get('/transaction/report-report', [ReportController::class, 'indexPaymentReport'])->name('transaction.paymentReport.index');
-    Route::get('/transaction/{id}/payment-report/print', [ReportController::class, 'printPaymentReport'])->name('transaction.paymentReport.print');
+    Route::get('/transaction/payment-report/print', [ReportController::class, 'printPaymentReport'])->name('transaction.paymentReport.print');
 });
 
 Route::middleware([
