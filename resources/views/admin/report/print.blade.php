@@ -61,7 +61,7 @@
             @endforeach
         </tbody>
     </table>
-    <p><b>Total Penyewaan: Rp {{ number_format($totalTransactions) }}</b></p>
+    <p style="text-align: right;"><b>Total Penyewaan: Rp {{ number_format($totalTransactions) }}</b></p>
     <br>
     <div style="right: 0">
         <p style="text-align: right">Kebumen, {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p> <br><br><br>
