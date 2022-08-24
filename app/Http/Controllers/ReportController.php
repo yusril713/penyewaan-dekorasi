@@ -51,7 +51,7 @@ class ReportController extends Controller
     {
         $transactions = Transaction::with('getCustomer', 'getTransactionDetails')
             ->whereBetween('created_at', [$request->startDate, $request->endDate])
-            ->where('status', '!=', Transaction::CANCELED);
+            ->where('status', '!=', Transaction::CANCELED)
             ->get();
         $pdf = PDF::loadView('admin.payment_report.print', [
             'title' => 'Laporan Pembayaran ' . $request->startDate . ' - ' . $request->endDate,
