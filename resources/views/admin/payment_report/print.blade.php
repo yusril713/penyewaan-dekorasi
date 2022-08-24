@@ -14,6 +14,9 @@
         </center>
         <hr style="color: black">
     </header>
+    <center>
+        <h4>{{ $title }}</h4>
+    </center>
     <table class="table table-bordered" style="margin-top: 20px">
         <tr>
             <th>No</th>
@@ -45,6 +48,9 @@
             @endforeach
         </tbody>
     </table>
+    <div style="text-align: right">
+        {{ number_format($totalTransactions) }}
+    </div>
     <br>
     <div style="right: 0">
         <p style="text-align: right">Kebumen, {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p> <br><br><br>

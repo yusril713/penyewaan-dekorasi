@@ -47,10 +47,14 @@ class ReportController extends Controller
         ]);
     }
 
-    public function printPaymentReport()
+    public function printPaymentReport(Request $request)
     {
-        $transactions = Transaction::with('getCustomer', 'getTransactionDetails')->get();
+        $transactions = Transaction::with('getCustomer', 'getTransactionDetails')
+            ->whereBetween('created_at', [$request->startDate, $request->endDate])
+            ->where('status', '!=', Transaction::CANCELED);
+            ->get();
         $pdf = PDF::loadView('admin.payment_report.print', [
+            'title' => 'Laporan Pembayaran ' . $request->startDate . ' - ' . $request->endDate,
             'transactions' => $transactions,
             'name' => Employee::where('user_id', '=', Auth::user()->id)->first()
         ]);

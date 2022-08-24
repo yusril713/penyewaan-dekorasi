@@ -62,5 +62,9 @@
         </tbody>
     </table>
     <p><b>Total Pembayaran: Rp {{ number_format($total) }}</b></p>
+    <div style="right: 0">
+        <p style="text-align: right">Kebumen, {{ \Carbon\Carbon::now()->format('d-m-Y') }}</p> <br><br><br>
+        <p style="text-align: right">{{ $transaction->getCustomer->name }}</p>
+    </div>
 </body>
 </html>
